@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: insurance-domain-eta-deploy
+  name: insurance-eta-deploy
   labels:
-    app: insurance-domain-eta-app
+    app: insurance-eta-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: insurance-domain-eta-app
+      app: insurance-eta-app
   template:
     metadata:
       labels:
-        app: insurance-domain-app
+        app: insurance-eta-app
     spec:
       containers:
-      - name: insurance-domain-eta-container
-        image: sadhana1996/insurance-domain-eta-app
+      - name: insurance-eta-container
+        image: vinay9246/insurance-eta-app:latest
         ports:
-        - containerPort: 8082
+        - containerPort: 8081
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: insurance-domain-eta-np-service
+  name: insurance-eta-np-service
   labels:
-    app: insurance-domain-eta-app
+    app: insurance-eta-app
 spec:
   selector:
-    app: insurance-domain-eta-app
+    app: insurance-eta-app
 
   type: NodePort
   ports:
-  - nodePort: 31032  
+  - nodePort: 31032
     port: 8082
     targetPort: 8081
